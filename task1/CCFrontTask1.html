@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CCFrontTask1</title>
+    <style>
+        body{
+            padding-top: 100px;
+            font-family: sans-serif;
+        }
+        .tooltip{
+            display: inline-block;
+            border-bottom: 2px dotted rgb(255,87,34);
+            white-space: nowrap;
+           position: relative;
+
+        }
+
+        .tooltip+.desc{
+            display: none;
+        }
+        .tooltip:hover+.desc{
+            display: inline-block;
+            margin:-0.7em;
+            position:relative;
+            padding:0.7em;
+            bottom:3em;
+            left:-9em;
+            width:15em;
+            border-radius: 0.4em;
+            color:white;
+            background-color: rgb(255,87,34);
+
+        }
+        .tooltip:hover+.desc::after{
+            content: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMiIgYmFzZVByb2ZpbGU9InRpbnkiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjQwcHgiIGhlaWdodD0iMThweCIgdmlld0JveD0iMCAwIDQwIDE4IiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWxpbmUgZmlsbD0iI0ZGNTcyMiIgaWQ9IlhNTElEXzJfIiBwb2ludHM9IjM4LDAgMjAsMTggMiwwICIvPjwvc3ZnPg==);
+            position:absolute;
+            display: inline;
+            left:calc(50% - 20px);
+            bottom:-18px;
+        }
+    </style>
+</head>
+<body>
+This is anccccccccccccccccccccccccccccccccccccccccccc awesome <span class="tooltip">tooltipppppppppppppp</span><span class="desc">It's so cool</span>
+</body>
+</html>
