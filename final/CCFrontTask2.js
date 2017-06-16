@@ -58,14 +58,13 @@ var damagesolver = function(spellsdivided,spellString,maximumgain,pos,length)
         {
             if(spellString.substring(pos-spllen+1,pos+1)===spellsdivided[spllen-1][i].s)
             {
-                maxdamage=spellsdivided[spllen-1][i].d+damagesolver(spellsdivided,spellString,maximumgain,pos-spllen,length);
+                maxdamage=Math.max(maxdamage,spellsdivided[spllen-1][i].d+damagesolver(spellsdivided,spellString,maximumgain,pos-spllen,length));
                 break;
             }
         }
     }
-    if(-1+damagesolver(spellsdivided,spellString,maximumgain,pos-1,length)>maxdamage) {
-        maxdamage = -1 + damagesolver(spellsdivided,spellString, maximumgain, pos - 1, length);
-    }
+    maxdamage = Math.max(maxdamage,-1 + damagesolver(spellsdivided,spellString, maximumgain, pos - 1, length));
+    
     maximumgain[pos] = maxdamage;
     return maxdamage;
 }

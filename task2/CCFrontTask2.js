@@ -9,7 +9,7 @@
  * It also removes letters not being part of the spell.
  *
  * 3. It uses a dynamic programming based approach to solve the problem:
- * 3.1. It calls a damagesover function on a last letter of the spell
+ * 3.1. It calls a damagesolver function on a last letter of the spell
  * 3.2. The function checks each possible length of a spell, if it finds an existing spell of this length it calculates the maximum damage by adding
  * the spell damage and damage of the previous part of the spell (recursion call) It also includes a -1 penalty for a single stray letter.
  * 3.3. It returns a maximum of damages of every possible spell length.
