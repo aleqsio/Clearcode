@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    p
+        h1 Testcases:
+             for testcase in testcases
+                  p
+                    span= testcase[0]
+                    span ,
+                    span= testcase[1]
+                    br
