@@ -20,32 +20,8 @@
 
 var spells = [{s: 'fe',d:1},{s:'je',d:2},{s:'ne',d:2},{s:'ai',d:2},{s:'jee',d:3},{s:'dai',d:5}];
 
-exports.damage = function(spellString) {
 
-    //reads spells and categorises them by value
-    var spells_divided = [];
-    for(var i=0;i<spells.length;i++)
-    {
-        if(!(spells_divided[spells[i].s.length-1] instanceof Array)) spells_divided[spells[i].s.length-1]=[];
-        spells_divided[spells[i].s.length-1].push(spells[i]);
-    }
-
-    //Verifies if string starts with fe, fe doesn't repeat, trims letters preceding
-    var beginning_pos = spellString.indexOf('fe');
-    if(beginning_pos!==spellString.lastIndexOf('fe') || beginning_pos===-1) return 0;
-    spellString=spellString.substring(beginning_pos,spellString.length);
-
-    //trims letters after last ai
-    spellString=spellString.substring(0,spellString.lastIndexOf('ai')+2);
-
-    //dynamic programming gain table
-    var maximum_gain=[];
-
-    //comparision to avoid negative damage
-    return Math.max(0,damagesolver(spells_divided,spellString,maximum_gain,spellString.length-1,spellString.length-1));
-}
-
-function damagesolver(spells_divided,spellString,maximum_gain,pos,length)
+exports.damagesolver = function(spells_divided,spellString,maximum_gain,pos,length)
 {
     if(pos<0)   return 0;   //no letters left, damage is 0
 
@@ -69,4 +45,29 @@ function damagesolver(spells_divided,spellString,maximum_gain,pos,length)
     }
     maximum_gain[pos] = max_damage;
     return max_damage;
+}
+
+exports.damage = function(spellString) {
+
+    //reads spells and categorises them by value
+    var spells_divided = [];
+    for(var i=0;i<spells.length;i++)
+    {
+        if(!(spells_divided[spells[i].s.length-1] instanceof Array)) spells_divided[spells[i].s.length-1]=[];
+        spells_divided[spells[i].s.length-1].push(spells[i]);
+    }
+
+    //Verifies if string starts with fe, fe doesn't repeat, trims letters preceding
+    var beginning_pos = spellString.indexOf('fe');
+    if(beginning_pos!==spellString.lastIndexOf('fe') || beginning_pos===-1) return 0;
+    spellString=spellString.substring(beginning_pos,spellString.length);
+
+    //trims letters after last ai
+    spellString=spellString.substring(0,spellString.lastIndexOf('ai')+2);
+
+    //dynamic programming gain table
+    var maximum_gain=[];
+
+    //comparision to avoid negative damage
+    return Math.max(0,exports.damagesolver(spells_divided,spellString,maximum_gain,spellString.length-1,spellString.length-1));
 }
